@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.dark,
-          fontFamily: 'Raleway',
+          fontFamily: 'OpenSans',
           textTheme: TextTheme(
-            subtitle1: TextStyle(color: Colors.black),
+            titleSmall: TextStyle(color: Colors.white),
           ),
         ).copyWith(
           scaffoldBackgroundColor: mobileBackgroundColor,

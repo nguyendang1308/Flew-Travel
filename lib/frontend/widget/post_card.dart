@@ -16,10 +16,12 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
   int commentLen = 0;
+  late model.User user;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    user = BlocProvider.of<UserBloc>(context).state.getUser!;
     getComments();
   }
 
@@ -39,7 +41,6 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User? user = BlocProvider.of<UserBloc>(context).state.getUser;
     return Container(
       color: mobileBackgroundColor,
       padding: const EdgeInsets.symmetric(

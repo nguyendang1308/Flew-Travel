@@ -17,14 +17,12 @@ class _MobileLayoutState extends State<MobileLayout> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController = PageController();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     pageController.dispose();
   }
@@ -48,51 +46,72 @@ class _MobileLayoutState extends State<MobileLayout> {
     final model.User? user = BlocProvider.of<UserBloc>(context).state.getUser;
     return Scaffold(
       body: PageView(
+        physics: CustomPageViewScrollPhysics(),
         children: homeScreenItems,
         controller: pageController,
         onPageChanged: onPageChanged,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _page,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          currentIndex: _page,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: 'Trang chủ',
             ),
-            label: 'Trang chủ',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.add,
+            BottomNavigationBarItem(
+              icon: Icon(
+                FontAwesomeIcons.add,
+              ),
+              label: 'Tin',
             ),
-            label: 'Tin',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.peopleGroup,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_bubble_outline),
+              label: 'Tin nhắn',
             ),
-            label: 'Bạn bè',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.bell,
+            BottomNavigationBarItem(
+              icon: Icon(
+                FontAwesomeIcons.bell,
+              ),
+              label: 'Thông báo',
             ),
-            label: 'Thông báo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_2_outlined,
+              ),
+              label: 'Tài khoản',
             ),
-            label: 'Tài khoản',
-          ),
-        ],
-        onTap: navigationTapped,
+          ],
+          onTap: navigationTapped,
+        ),
       ),
     );
   }
+}
+
+class CustomPageViewScrollPhysics extends ScrollPhysics {
+  const CustomPageViewScrollPhysics({ScrollPhysics? parent})
+      : super(parent: parent);
+
+  @override
+  CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 50,
+        stiffness: 100,
+        damping: 0.8,
+      );
 }

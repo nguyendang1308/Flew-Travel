@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flew_travel/frontend/pages/search_page.dart';
 import 'package:flew_travel/package/package.dart';

@@ -13,7 +13,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _email.dispose();
     _password.dispose();
     super.dispose();
@@ -28,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     if (res != 'success') {
       showSnackBar(res, context);
     } else {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         PageTransition(
           child: const ResponsiveLayout(
@@ -38,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
           type: PageTransitionType.bottomToTop,
           duration: const Duration(milliseconds: 500),
         ),
+        (route) => false,
       );
     }
   }
@@ -111,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             TextField(
                               controller: _email,
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 labelText: 'Email',
                                 labelStyle: const TextStyle(
@@ -136,6 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             TextField(
                               controller: _password,
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 labelText: 'Password',
                                 labelStyle: const TextStyle(

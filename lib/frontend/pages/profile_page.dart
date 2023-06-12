@@ -111,11 +111,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                             function: () async {
                                               await AuthRepository().signOut();
                                               Navigator.of(context)
-                                                  .pushReplacement(
+                                                  .pushAndRemoveUntil(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const LoginPage(),
+                                                      const WelcomePage(),
                                                 ),
+                                                (route) => false,
                                               );
                                             },
                                           )

@@ -24,3 +24,6 @@ export 'package:bloc/bloc.dart';
 export 'package:flew_travel/frontend/pages/add_post_page.dart';
 export 'package:flew_travel/frontend/pages/feed_page.dart';
 export 'package:flew_travel/frontend/widget/post_card.dart';
+export 'package:flew_travel/frontend/pages/chat_page.dart';
+export 'package:flew_travel/frontend/pages/profile_page.dart';
+export 'package:flew_travel/frontend/widget/chat_card.dart';
